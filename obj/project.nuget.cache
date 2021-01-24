@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "OWqb7zfRZ71X2TjXGwwejSmMIMxSqCV2dV6gO2psetX+nJIvuravJmR58qpl7eXGgX3YjifDlcgkzA6vILuL/Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alexa\\source\\repos\\web-encurtador-ale\\web-encurtador-ale.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexa\\.nuget\\packages\\litedb\\5.0.10\\litedb.5.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}
