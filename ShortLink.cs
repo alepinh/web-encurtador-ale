@@ -16,7 +16,7 @@ namespace web_encurtador_ale
             return WebEncoders.Base64UrlEncode(BitConverter.GetBytes(Id));
         }
 
-        public static int GetId(string urlChunk)
+        public int GetId(string urlChunk)
         {
             // Reverse our short url text back into an interger Id
             return BitConverter.ToInt32(WebEncoders.Base64UrlDecode(urlChunk));

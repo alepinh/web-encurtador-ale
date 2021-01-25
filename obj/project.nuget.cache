@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "OWqb7zfRZ71X2TjXGwwejSmMIMxSqCV2dV6gO2psetX+nJIvuravJmR58qpl7eXGgX3YjifDlcgkzA6vILuL/Q==",
+  "dgSpecHash": "pQKwL8l4biJ22/ItRK3hLk34GLLoH/yUVBypwyXsIXoSZEVu0oaawJ1NvO0lbNYWT+OAu24aCn9YcdSsWQKQ5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\alexa\\source\\repos\\web-encurtador-ale\\web-encurtador-ale.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alexa\\.nuget\\packages\\litedb\\5.0.10\\litedb.5.0.10.nupkg.sha512"
+    "C:\\Users\\alexa\\.nuget\\packages\\litedb\\5.0.10\\litedb.5.0.10.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
+    "C:\\Users\\alexa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

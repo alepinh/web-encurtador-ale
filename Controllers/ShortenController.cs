@@ -8,22 +8,33 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using web_encurtador_ale.Models;
+using System.Text.Encodings.Web;
 
 namespace web_encurtador_ale.Controllers
 {
     public class ShortenController : Controller
     {
-        private HttpContext _url_Long;
+        //private HttpContext _url_Long = null;
 
        
-        public ShortenController(HttpContext Url_Long)
+        public ShortenController()
         {
-            _url_Long = Url_Long;
+           // _url_Long = Url_Long;
         }
 
-        public IActionResult Index()
+        public ActionResult<string> Shortening()
         {
-            HandleShortener.HandleShortenUrl(_url_Long);
+
+            //var https = HttpContext.Request.IsHttps;
+            //var caminho = HttpContext.Request.Path;
+            //var status = HttpContext.Response.StatusCode;
+            //var conexao = HttpContext.Connection.ToString();
+            //string teste = https + "\r\n" + caminho + "\r\n" + status + "\r\n" + conexao;
+
+            //return teste;
+
+
+            HandleShortener.HandleShortenUrl(HttpContext);
             return View();
         }
     }

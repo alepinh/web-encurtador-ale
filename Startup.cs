@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace web_encurtador_ale
@@ -25,7 +26,14 @@ namespace web_encurtador_ale
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
+
+            // Add LiteDB
+            services.AddSingleton<ILiteDatabase, LiteDatabase>(_ => new LiteDatabase("short-links.db"));
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +59,8 @@ namespace web_encurtador_ale
 
             app.UseAuthorization();
 
+            
+
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapPost("/shorten", HandleShortenUrl);
@@ -59,10 +69,30 @@ namespace web_encurtador_ale
                     pattern: "{controller=Shortener}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(name: "Shorten",
-                                pattern: "{controller=Shorten}/{action=Index}/{id?}");
+                                pattern: "{controller=Shorten}/{action=Shortening}/{id?}");
+
+                endpoints.MapFallback(HandleRedirect);
             });
         }
 
-        
+
+        static Task HandleRedirect(HttpContext context)
+        {
+            var db = context.RequestServices.GetService<ILiteDatabase>();
+            var collection = db.GetCollection<ShortLink>();
+
+            var path = context.Request.Path.ToUriComponent().Trim('/');
+
+            var id = new ShortLink().GetId(path);
+            var entry = collection.Find(p => p.Id == id).FirstOrDefault();
+
+            if (entry != null)
+                context.Response.Redirect(entry.Url);
+            else
+                context.Response.Redirect("/");
+
+            return Task.CompletedTask;
+        }
+
     }
 }
